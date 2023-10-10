@@ -1,0 +1,22 @@
+spring:
+  application.name: resilience4j-demo #Nome da aplicação
+  jackson.serialization.indent_output: true
+
+management:
+  endpoints.web.exposure.include: #Expondo todos os nossos endpoints
+    - '*'
+  endpoint.health.show-details: always
+  health.circuitbreakers.enabled: true #Habilitando circuitBreakers na aplicação
+
+#Configuração do circuitBreaker do resilience4j
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10 #Numero de tentativa de requisi
+      minimumNumberOfCalls: 5 #Número mínimo de falhas para começar a monitorar os estados
+      permittedNumberOfCallsInHalfOpenState: 3 #Número de chamadas quando estado estiver em semi-aberto
+      automaticTransitionFromOpenToHalfOpenEnabled: true #Transição automática do estado aberto para o semi-aberto
+      waitDurationInOpenState: 5s #Fica 5s até passar para o estado semi-aberto
+      failureRateThreshold: 50 # Configuração e porcentagem do limite da taxa de falha para passar para o estado aberto
+      eventConsumerBufferSize: 10

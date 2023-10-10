@@ -1,2 +1,6 @@
-# estudos-circuitBreaker
-Projeto prático para estudo sobre CircuitBreaker com Spring e Resilience4J
+# Circuit Breaker using Spring Boot 3 and Resilience4J
+
+![Architecture](./architecture.png)
+
+## Endpoints
+- `http://localhost:8080/activity` returns random activity from `boredapi.com`
